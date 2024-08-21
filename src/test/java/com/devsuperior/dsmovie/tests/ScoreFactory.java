@@ -7,7 +7,7 @@ import com.devsuperior.dsmovie.entities.UserEntity;
 
 public class ScoreFactory {
 	
-	public static Double scoreValue = 4.5;
+	public static Double scoreValue = 5.0;
 	
 	public static ScoreEntity createScoreEntity() {
 		MovieEntity movie = MovieFactory.createMovieEntity();

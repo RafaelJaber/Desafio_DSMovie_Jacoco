@@ -53,13 +53,15 @@ public class ScoreServiceTests {
 
 		score = ScoreFactory.createScoreEntity();
 		movie = MovieFactory.createMovieEntity();
+		movie.getScores().add(score);
 		user = UserFactory.createUserEntity();
 
 		Mockito.when(movieRepository.findById(existingMovieId)).thenReturn(Optional.of(movie));
 		Mockito.when(movieRepository.findById(nonExistingMovieId)).thenReturn(Optional.empty());
 
-		Mockito.when(scoreRepository.save(any())).thenReturn(score);
+		Mockito.when(scoreRepository.saveAndFlush(any())).thenReturn(score);
 		Mockito.when(movieRepository.save(any())).thenReturn(movie);
+
 	}
 
 	
@@ -72,6 +74,7 @@ public class ScoreServiceTests {
 
 		Assertions.assertNotNull(result);
 		Assertions.assertEquals(result.getId(), existingMovieId);
+		Assertions.assertEquals(result.getScore(), 5.0);
 	}
 	
 	@Test
